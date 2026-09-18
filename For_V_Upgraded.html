@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff0f6">
+<title>For V ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:'DM Sans',sans-serif;color:#4d3943;background:linear-gradient(135deg,#fff4f8,#f8f0ff 50%,#eef8ff);overflow-x:hidden}
+body:before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 15%,#ffc1d955,transparent 28%),radial-gradient(circle at 90% 25%,#c7b1ff55,transparent 27%),radial-gradient(circle at 45% 95%,#b9e8ff44,transparent 30%)}
+.app{position:relative;max-width:620px;margin:auto;padding:22px 18px 50px}.screen{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.card{width:100%;background:#ffffffb5;backdrop-filter:blur(18px);border:1px solid #ffffffdd;border-radius:30px;box-shadow:0 20px 60px #6e466a22;padding:28px 20px}
+.hidden{display:none!important}.center{text-align:center}
+.heart{font-size:58px;display:inline-block;animation:beat 1.8s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.12)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+.title{font:600 46px 'Playfair Display',serif;margin:5px 0;color:#8b4665}.subtitle{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#a27d8e}
+.intro{font-size:16px;line-height:1.7;margin:20px auto 26px;max-width:430px}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:13px 22px;font:600 15px 'DM Sans';background:linear-gradient(135deg,#e98aaa,#b98ee8);color:white;box-shadow:0 10px 25px #b56e9c38;transition:.25s}
+.btn:hover{transform:translateY(-2px)}.pulse{animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 12px 40px #df64a866}}
+.head{text-align:center;padding:18px 5px 12px}.mini{font-size:12px;color:#a27d8e;letter-spacing:1.5px}.head h1{font:600 34px 'Playfair Display';color:#7e4863;margin:7px 0}.question{text-align:center}
+.moods{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.mood{padding:15px 9px;border:1px solid #be96af44;background:#ffffffb8;border-radius:19px;cursor:pointer;color:#59434e;font:500 14px 'DM Sans';transition:.25s}.mood span{font-size:22px;display:block;margin-bottom:5px}.mood:hover{transform:translateY(-3px);background:#fff;box-shadow:0 12px 25px #6e466a1c}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.tile{border:1px solid #be96af38;background:#ffffff99;border-radius:20px;padding:17px 13px;text-align:left;cursor:pointer;transition:.25s;color:#59434e}.tile:hover{transform:translateY(-3px);background:#ffffffdd}.icon{font-size:28px}.tile b{display:block;margin:4px 0}.tile small{color:#927782}
+.footer{text-align:center;color:#a58a95;font-size:12px;margin-top:24px}
+.overlay{position:fixed;inset:0;background:#432b3a47;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal{width:min(560px,100%);max-height:88vh;overflow:auto;background:#fffafa;border-radius:28px;padding:28px 22px;box-shadow:0 30px 80px #32192d40;position:relative;animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+.close{position:absolute;right:14px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#f7e9ef;color:#765364;font-size:20px;cursor:pointer}.modal h2{font:600 29px 'Playfair Display';color:#854b67;margin:4px 40px 14px 0}.message{font-size:17px;line-height:1.8;background:linear-gradient(135deg,#fff5f8,#f8f1ff);border-radius:20px;padding:20px}.note{margin-top:15px;font-size:13px;color:#9a7b87;text-align:center}
+.back{margin-top:16px;background:#fff;color:#754f61;box-shadow:none;border:1px solid #ead6df}
+.cararea{height:100px;position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(#eaf4ff 0 68%,#d9d5d5 68%);margin:14px 0}.car{position:absolute;bottom:14px;left:-130px;font-size:54px;animation:drive 4s linear infinite}@keyframes drive{to{left:110%}}
+.paws{font-size:31px;letter-spacing:8px;text-align:center;animation:wiggle 1.2s ease-in-out infinite alternate}@keyframes wiggle{to{transform:translateX(5px) rotate(1deg)}}
+.books{font-size:45px;text-align:center;margin:12px}.letters{display:grid;gap:10px}.letter{border:1px solid #efdde5;background:#fff7fa;padding:15px;border-radius:17px;cursor:pointer;text-align:left;font:500 14px 'DM Sans'}
+.float{position:fixed;bottom:-30px;pointer-events:none;z-index:30;animation:up 3.5s linear forwards}@keyframes up{10%{opacity:.8}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+.spark{position:fixed;width:5px;height:5px;border-radius:50%;background:white;pointer-events:none;animation:twinkle 2.5s infinite}@keyframes twinkle{50%{opacity:.9;transform:scale(1.5)}}
+@media(max-width:390px){.title{font-size:40px}.mood{font-size:13px;padding:13px 7px}.card{padding:24px 15px}}
+</style>
+</head>
+<body>
+<div id="fx"></div>
+
+<section id="welcome" class="screen app">
+<div class="card center">
+<div class="heart">💌</div><div class="subtitle">a tiny corner of the internet</div>
+<h1 class="title">For V</h1>
+<p class="intro">Made by the girl who loves annoying you,<br>worrying about you,<br>and loving you a little more than she admits. ❤️</p>
+<button class="btn pulse" onclick="enter()">Come in →</button>
+<p class="note">P.S. Yes, this entire website is about you.</p>
+</div>
+</section>
+
+<main id="home" class="app hidden">
+<div class="head"><div class="mini">WELCOME TO YOUR LITTLE CORNER, V</div><h1>How are you feeling today?</h1><p class="question">Choose honestly. I promise I won't judge. 😌</p></div>
+<div class="card">
+<div class="moods">
+<button class="mood" onclick="mood('happy')"><span>😊</span>I'm happy</button><button class="mood" onclick="mood('sad')"><span>🥺</span>I'm sad</button>
+<button class="mood" onclick="mood('annoyed')"><span>😤</span>I'm annoyed</button><button class="mood" onclick="mood('miss')"><span>😔</span>I miss you</button>
+<button class="mood" onclick="mood('stress')"><span>🫠</span>I'm stressed</button><button class="mood" onclick="mood('love')"><span>❤️</span>I need love</button>
+<button class="mood" onclick="mood('tired')"><span>😴</span>I'm tired</button><button class="mood" onclick="mood('motivation')"><span>🤍</span>I need motivation</button>
+<button class="mood" onclick="mood('laugh')"><span>😂</span>Make me laugh</button><button class="mood" onclick="mood('thinking')"><span>🥰</span>I'm thinking of you</button>
+<button class="mood" onclick="mood('angry')"><span>😡</span>I'm angry</button><button class="mood" onclick="mood('hug')"><span>🫂</span>I need a hug</button>
+</div>
+<div class="tiles">
+<button class="tile" onclick="modal('story')"><div class="icon">📖</div><b>Our little story</b><small>A few chapters of us</small></button>
+<button class="tile" onclick="modal('dog')"><div class="icon">🐶</div><b>Dog therapy</b><small>Emergency prescription</small></button>
+<button class="tile" onclick="modal('car')"><div class="icon">🚗</div><b>For the car nerd</b><small>Vroom vroom</small></button>
+<button class="tile" onclick="modal('books')"><div class="icon">📚</div><b>Your bookshelf</b><small>For your book brain</small></button>
+<button class="tile" onclick="modal('letters')"><div class="icon">💌</div><b>Open when...</b><small>Little letters from me</small></button>
+<button class="tile" onclick="modal('secret')"><div class="icon">🔐</div><b>Something secret</b><small>Don't tell anyone</small></button>
+</div>
+<div class="center"><button class="btn" style="margin-top:18px" onclick="secret()">♡ Don't click this</button></div>
+</div>
+<div class="footer">Made with an unreasonable amount of love ❤️</div>
+</main>
+
+<div id="overlay" class="overlay hidden" onclick="outside(event)"><div class="modal"><button class="close" onclick="closeM()">×</button><div id="content"></div></div></div>
+
+<script>
+const M={
+happy:["Look at you being happy. 🥹❤️ I hope you know how much I love seeing you like this. Now tell me what happened—I want the entire story.","Your happiness looks really good on you, V. Please keep that smile for a little longer. ❤️"],
+sad:["Come here, V. 🫂 You don't have to fix everything right now. Have a bad day if you need to. I'm still here.","You don't have to be strong every second. For today, just breathe. And remember that somewhere, someone is very, very much on your side. ❤️"],
+annoyed:["Okay, Mr. Grumpy. 😤 Take a breath before you declare war on the entire world. And yes, I am still giving you a hug.","I know you're annoyed. I also know you're cute when you're annoyed, which is honestly very inconvenient for me. 😂❤️"],
+miss:["I miss you too, V. More than this tiny screen can explain. If teleportation existed, I'd already be there annoying you. Until then—virtual hug. 🫂❤️","Missing me? Good. At least we're both suffering equally. Come back to me soon. ❤️"],
+stress:["Pause. Shoulders down. Breathe. You don't have to solve your whole life tonight. One thing at a time, okay? I've got you. ❤️","Whatever is stressing you out right now is not bigger than you. Take it slowly. I believe in you."],
+love:["LOVE EMERGENCY 🚨❤️ Treatment: one very long hug, one forehead kiss, and absolutely no escaping until I say so.","Your emotional-support girlfriend is currently reporting for duty. Come here. 🫂"],
+tired:["Enough for today. Go rest, V. Drink some water, put the phone away and let yourself be tired. Tomorrow can wait. ❤️","You've done enough. Now go be a sleepy little human and rest. 😴❤️"],
+motivation:["You don't need to have everything figured out. Just do the next thing. Then the next. I know what you're capable of, even when you forget. ❤️","Come on, V. One more step. Not to prove anything to anyone—just because I know how much you care about what you're building. I'm cheering for you."],
+laugh:["Official girlfriend announcement: you have been prescribed one stupid joke, three terrible impressions and unlimited teasing. Side effects may include smiling. 😂","I was going to say something intelligent, but then I remembered you chose me. So here we are. 😂❤️"],
+thinking:["You're thinking about me? Interesting. Because I may or may not have been thinking about you too. Okay fine. I definitely was. 🥰","Somewhere, you're thinking about me and I'm thinking about you. I really like that. ❤️"],
+angry:["You're allowed to be angry. Just don't let the anger decide everything for you. Take your time. When you're ready, talk to me. I'm not going anywhere. ❤️","I'm not asking you to stop feeling angry. I'm just reminding you that you don't have to carry it alone."],
+hug:["HUG REQUEST ACCEPTED. 🫂 Please remain still while your girlfriend delivers one unnecessarily long hug. No escape.","Close your eyes for a second. Imagine I'm right there, arms around you. That's your hug until I can give you the real one. ❤️"]
+};
+function enter(){welcome.classList.add('hidden');home.classList.remove('hidden');fxBurst('💗')}
+function mood(k){let a=M[k],m=a[Math.floor(Math.random()*a.length)];show("<h2>"+document.querySelector('[onclick="mood(\''+k+"\')"]')?.innerText+"</h2><div class='message'>"+m+"</div><div class='note'>If you need me, you know where to find me. ❤️</div>");fxBurst(k==='love'||k==='hug'?'❤️':'✨')}
+function modal(k){
+let c='';
+if(k==='story')c="<h2>Our little story 📖</h2><div class='message'>Two people. A thousand little moments. Some ridiculous, some difficult, some impossibly beautiful. And somehow, through all of them, there is still an <i>us</i>.<br><br>More chapters coming soon. ❤️</div>";
+if(k==='dog')c="<h2>Doctor Girlfriend prescribes... 🐶</h2><div class='paws'>🐾 🐾 🐾</div><div class='message'>One dog. Unlimited cuddles. Ten minutes of forgetting the rest of the world.<br><br>Prescription valid whenever V is having a bad day.</div>";
+if(k==='car')c="<h2>Vroom vroom 🚗</h2><div class='cararea'><div class='car'>🚗💨</div></div><div class='message'>I may not understand every tiny detail about cars... but I do understand that your face lights up when you talk about them. And honestly, I love that.</div>";
+if(k==='books')c="<h2>Your bookshelf 📚</h2><div class='books'>📕 📗 📘 📙</div><div class='message'>For the man who can turn a normal evening into a discussion about politics, history and the entire state of the world. 😂<br><br>Keep reading. Keep questioning. And occasionally let your girlfriend interrupt your analysis.</div>";
+if(k==='letters')c="<h2>Open when... 💌</h2><div class='letters'><button class='letter' onclick='letter(0)'>🥺 Open when you miss me</button><button class='letter' onclick='letter(1)'>💔 Open when you had a bad day</button><button class='letter' onclick='letter(2)'>😡 Open when you're angry with me</button><button class='letter' onclick='letter(3)'>🌙 Open when you can't sleep</button><button class='letter' onclick='letter(4)'>❤️ Open when you need to know how much I love you</button></div>";
+if(k==='secret')c="<h2>Okay... this one is actually secret. 🔐</h2><div class='message'>V, behind all my teasing, nonsense and dramatic behaviour, there is a girl who genuinely feels very lucky to have you.<br><br>I don't need every day to be perfect. I just want more ordinary days with you.<br><br>That's all. ❤️</div>";
+show(c)}
+const L=["I miss you too. Probably more than I say. So consider this a tiny hug sent through your phone. Come back to me soon. ❤️","I'm sorry today was hard. You don't have to pretend you're okay for me. Rest, breathe, and remember that I'm on your side. Tomorrow is another day. 🫂","If you're angry with me, you are allowed to be. When you're ready, tell me. I would rather understand you than win an argument. ❤️","Put the phone down after reading this. Close your eyes. Breathe slowly. Imagine my hand in yours. Now sleep, idiot. 🌙❤️","In case you ever forget: I choose you in the little things. The boring days, silly conversations, random calls, annoying habits and quiet moments. I love the life that exists between the big moments. ❤️"];
+function letter(i){show("<h2>From me, to you 💌</h2><div class='message'>"+L[i]+"</div><button class='btn back' onclick='modal("letters")'>← Back to letters</button>");fxBurst('💗')}
+function secret(){show("<h2>I knew you would click it. 😂❤️</h2><div class='message'>You really thought I would leave a button saying <b>“don't click this”</b> and expect you to behave?<br><br>Come here, idiot. 🫂<br><br><i>There is no escaping your girlfriend.</i></div>");fxBurst('❤️')}
+function show(c){content.innerHTML=c;overlay.classList.remove('hidden')}
+function closeM(){overlay.classList.add('hidden')}function outside(e){if(e.target===overlay)closeM()}
+function fxBurst(s){for(let i=0;i<14;i++){let x=document.createElement('span');x.className='float';x.textContent=s;x.style.left=Math.random()*100+'vw';x.style.fontSize=14+Math.random()*18+'px';x.style.animationDuration=2+Math.random()*2+'s';fx.appendChild(x);setTimeout(()=>x.remove(),4500)}}
+setInterval(()=>{let s=document.createElement('i');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';fx.appendChild(s);setTimeout(()=>s.remove(),3000)},700);
+</script>
+</body></html>
