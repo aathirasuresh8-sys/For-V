@@ -1,1370 +1,621 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Just For You ❤️</title>
+<title>For V ❤️</title>
 
 <style>
+*{box-sizing:border-box}
 
-/* =========================
-   BASIC SETUP
-========================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+background:linear-gradient(135deg,#fff0f6,#f5edff,#eaf8ff);
+color:#40283a;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
+.screen{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:25px 15px;
 }
 
-body {
-    overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
-    background: #120814;
-    color: white;
+.card{
+width:100%;
+max-width:720px;
+padding:28px;
+text-align:center;
+background:rgba(255,255,255,.8);
+border-radius:28px;
+box-shadow:0 15px 50px rgba(80,40,80,.15);
 }
 
-/* =========================
-   ANIMATED BACKGROUND
-========================= */
-
-.background {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,80,150,0.18), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(150,70,255,0.16), transparent 30%),
-        linear-gradient(135deg, #120814, #241020, #100711);
-    z-index: -10;
+.hidden{
+display:none !important;
 }
 
-.orb {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.18;
-    animation: orbMove 12s infinite alternate ease-in-out;
+.heart{
+font-size:50px;
+animation:beat 1.4s infinite;
 }
 
-.orb.one {
-    background: #ff4f91;
-    top: -120px;
-    left: -100px;
+@keyframes beat{
+50%{transform:scale(1.12)}
 }
 
-.orb.two {
-    background: #a65cff;
-    bottom: -130px;
-    right: -100px;
-    animation-delay: 3s;
+h1{
+font-size:42px;
+margin:8px 0;
 }
 
-@keyframes orbMove {
-
-    0% {
-        transform: translate(0,0) scale(1);
-    }
-
-    100% {
-        transform: translate(100px,70px) scale(1.35);
-    }
-
+h2{
+margin-top:10px;
 }
 
-/* =========================
-   STARS
-========================= */
-
-.star {
-    position: fixed;
-    color: rgba(255,255,255,0.6);
-    animation: twinkle 3s infinite alternate;
-    pointer-events: none;
-    z-index: -2;
+p{
+line-height:1.6;
 }
 
-@keyframes twinkle {
-
-    from {
-        opacity: 0.15;
-        transform: scale(0.7);
-    }
-
-    to {
-        opacity: 0.9;
-        transform: scale(1.2);
-    }
-
+.sub{
+color:#765d70;
 }
 
-/* =========================
-   MAIN APP
-========================= */
-
-#app {
-    width: 100%;
-    height: 100%;
-    position: relative;
+button{
+border:0;
+border-radius:18px;
+padding:14px 17px;
+margin:6px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(135deg,#ffd1e4,#dfd0ff);
+color:#40283a;
+box-shadow:0 6px 15px rgba(80,40,80,.12);
 }
 
-/* =========================
-   SCREENS
-========================= */
-
-.screen {
-    position: absolute;
-    inset: 0;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 25px;
-
-    text-align: center;
-
-    overflow-y: auto;
-
-    opacity: 0;
+button:active{
+transform:scale(.96);
 }
 
-.screen.active {
-    display: flex;
-
-    animation: screenIn 0.8s ease forwards;
+.enter{
+font-size:18px;
+padding:16px 32px;
+background:linear-gradient(135deg,#ffb5d1,#cdb7ff);
 }
 
-@keyframes screenIn {
-
-    from {
-        opacity: 0;
-        transform: scale(1.04) translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-
+.moods,
+.tiles,
+.letters{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:8px;
+margin-top:20px;
 }
 
-/* =========================
-   CONTENT
-========================= */
-
-.content {
-    width: 100%;
-    max-width: 850px;
-    padding: 20px;
+.moods button,
+.tiles button,
+.letters button{
+margin:0;
 }
 
-.tiny {
-    font-size: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #eaa5bf;
-    margin-bottom: 25px;
+.modal{
+position:fixed;
+inset:0;
+background:rgba(40,20,40,.5);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:10;
 }
 
-h1 {
-    font-size: clamp(48px, 12vw, 95px);
-    font-weight: normal;
-    line-height: 1;
-    margin-bottom: 25px;
+.modalbox{
+background:white;
+width:100%;
+max-width:600px;
+max-height:85vh;
+overflow:auto;
+border-radius:25px;
+padding:28px;
+text-align:center;
 }
 
-h2 {
-    font-size: clamp(35px, 8vw, 65px);
-    font-weight: normal;
-    line-height: 1.15;
-    margin-bottom: 25px;
+.close{
+background:#eee1eb;
 }
 
-p {
-    font-size: clamp(17px, 3vw, 21px);
-    line-height: 1.8;
-    color: #e8d5de;
+.car{
+font-size:40px;
+animation:drive 2s infinite alternate;
 }
 
-.pink {
-    color: #ff8fb9;
+@keyframes drive{
+to{transform:translateX(100px)}
 }
 
-.soft {
-    color: #f7c8d9;
+.paws{
+font-size:30px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-button {
-    font-family: Georgia, "Times New Roman", serif;
+.footer{
+margin-top:25px;
+font-size:13px;
+color:#8c7184;
 }
-
-.next-button {
-    margin-top: 40px;
-
-    border: 1px solid rgba(255,255,255,0.25);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,100,160,0.9),
-            rgba(172,90,255,0.9)
-        );
-
-    color: white;
-
-    padding: 15px 32px;
-
-    border-radius: 50px;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 35px rgba(255,70,150,0.2);
-
-    transition: 0.3s;
-}
-
-.next-button:hover {
-    transform: scale(1.08);
-}
-
-.next-button:active {
-    transform: scale(0.96);
-}
-
-/* =========================
-   OPENING HEART
-========================= */
-
-.big-heart {
-    font-size: 80px;
-    display: block;
-    margin-bottom: 25px;
-
-    animation:
-        heartbeat 1.6s infinite,
-        float 4s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-
-    0%,100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.18);
-    }
-
-}
-
-@keyframes float {
-
-    0%,100% {
-        margin-top: 0;
-    }
-
-    50% {
-        margin-top: -12px;
-    }
-
-}
-
-/* =========================
-   CHANGING SENTENCE
-========================= */
-
-.changing-text {
-    min-height: 80px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: clamp(22px, 5vw, 34px);
-
-    font-style: italic;
-
-    color: #ffe1eb;
-
-    transition: opacity 0.5s;
-}
-
-/* =========================
-   STORY BOX
-========================= */
-
-.story-box {
-
-    background: rgba(255,255,255,0.055);
-
-    border:
-        1px solid rgba(255,255,255,0.12);
-
-    border-radius: 30px;
-
-    padding: 35px 28px;
-
-    box-shadow:
-        0 20px 70px rgba(0,0,0,0.3);
-
-    backdrop-filter: blur(15px);
-
-}
-
-/* =========================
-   MEMORY CARDS
-========================= */
-
-.memory-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(200px,1fr));
-
-    gap: 18px;
-
-    margin-top: 30px;
-
-}
-
-.memory {
-
-    padding: 28px 20px;
-
-    border-radius: 25px;
-
-    background: rgba(255,255,255,0.06);
-
-    border:
-        1px solid rgba(255,255,255,0.1);
-
-    transition: 0.4s;
-}
-
-.memory:hover {
-
-    transform: translateY(-8px);
-
-    background: rgba(255,110,170,0.1);
-
-}
-
-.memory-icon {
-
-    font-size: 40px;
-
-    margin-bottom: 15px;
-
-}
-
-.memory h3 {
-
-    font-size: 21px;
-
-    font-weight: normal;
-
-    margin-bottom: 10px;
-
-}
-
-.memory p {
-
-    font-size: 15px;
-
-    line-height: 1.6;
-
-}
-
-/* =========================
-   TIMER
-========================= */
-
-.timer {
-
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 35px;
-
-}
-
-.time {
-
-    min-width: 80px;
-
-    padding: 18px 12px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.06);
-
-    border:
-        1px solid rgba(255,255,255,0.1);
-
-}
-
-.time-number {
-
-    display: block;
-
-    font-size: 28px;
-
-    color: #ff9fc1;
-
-}
-
-.time-label {
-
-    display: block;
-
-    margin-top: 5px;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    color: #c8aeb9;
-
-}
-
-/* =========================
-   LETTER
-========================= */
-
-.letter {
-
-    text-align: left;
-
-    padding: 32px 25px;
-
-    border-radius: 28px;
-
-    background:
-        rgba(255,255,255,0.055);
-
-    border:
-        1px solid rgba(255,255,255,0.1);
-
-}
-
-.letter p {
-
-    margin-bottom: 18px;
-
-    font-size: 17px;
-
-}
-
-.signature {
-
-    text-align: right;
-
-    color: #ff9fc1;
-
-    font-size: 23px;
-
-    font-style: italic;
-
-    margin-top: 25px;
-
-}
-
-/* =========================
-   SURPRISE
-========================= */
-
-.surprise {
-
-    display: none;
-
-    margin-top: 35px;
-
-    padding: 35px 22px;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,80,150,0.13),
-            rgba(140,70,255,0.13)
-        );
-
-    border:
-        1px solid rgba(255,160,200,0.2);
-
-    animation: surprise 1s ease forwards;
-
-}
-
-.surprise.show {
-
-    display: block;
-
-}
-
-@keyframes surprise {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.7)
-            rotate(-2deg);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0);
-
-    }
-
-}
-
-.surprise h2 {
-
-    color: #ffabc7;
-
-    font-size: 40px;
-
-}
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-.floating-heart {
-
-    position: fixed;
-
-    bottom: -50px;
-
-    pointer-events: none;
-
-    z-index: 50;
-
-    animation:
-        floatHeart linear forwards;
-
-}
-
-@keyframes floatHeart {
-
-    0% {
-
-        transform:
-            translateY(0)
-            rotate(0);
-
-        opacity: 0;
-
-    }
-
-    10% {
-
-        opacity: 0.8;
-
-    }
-
-    100% {
-
-        transform:
-            translateY(-110vh)
-            rotate(360deg);
-
-        opacity: 0;
-
-    }
-
-}
-
-/* =========================
-   CLICK HEART
-========================= */
-
-.click-heart {
-
-    position: fixed;
-
-    pointer-events: none;
-
-    z-index: 100;
-
-    font-size: 22px;
-
-    animation: clickHeart 1s ease forwards;
-
-}
-
-@keyframes clickHeart {
-
-    from {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%,-50%)
-            scale(0.6);
-
-    }
-
-    to {
-
-        opacity: 0;
-
-        transform:
-            translate(-50%,-150%)
-            scale(1.5);
-
-    }
-
-}
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-.music-button {
-
-    position: fixed;
-
-    top: 18px;
-
-    right: 18px;
-
-    z-index: 200;
-
-    width: 46px;
-
-    height: 46px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid rgba(255,255,255,0.2);
-
-    background:
-        rgba(255,255,255,0.08);
-
-    color: white;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(10px);
-
-    font-size: 18px;
-
-}
-
-/* =========================
-   PROGRESS
-========================= */
-
-.progress {
-
-    position: fixed;
-
-    bottom: 15px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 200;
-
-    display: flex;
-
-    gap: 7px;
-
-}
-
-.dot {
-
-    width: 7px;
-
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,0.25);
-
-    transition: 0.3s;
-
-}
-
-.dot.active {
-
-    width: 22px;
-
-    border-radius: 10px;
-
-    background: #ff91b8;
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:600px) {
-
-    .content {
-
-        padding: 10px;
-
-    }
-
-    .story-box {
-
-        padding: 28px 18px;
-
-    }
-
-    .letter {
-
-        padding: 25px 18px;
-
-    }
-
-    .letter p {
-
-        font-size: 16px;
-
-    }
-
-    .time {
-
-        min-width: 70px;
-
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
+<!-- WELCOME PAGE -->
 
-<!-- =========================
-     BACKGROUND
-========================= -->
+<section id="welcome" class="screen">
 
-<div class="background">
+<div class="card">
 
-    <div class="orb one"></div>
-    <div class="orb two"></div>
+<div class="heart">💌</div>
 
-</div>
+<p class="sub">a tiny corner of the internet</p>
 
+<h1>For V ❤️</h1>
 
-<!-- MUSIC BUTTON -->
+<p>
+Made by the girl who loves annoying you,
+worrying about you, and loving you a little
+more than she admits.
+</p>
 
-<button
-    class="music-button"
-    onclick="toggleMusic()"
-    id="musicButton"
->
-    ♫
+<button class="enter" onclick="showHome()">
+Come in →
 </button>
 
+<p class="sub">
+P.S. Yes, this entire website is about you.
+</p>
 
-<!-- =========================
-     APP
-========================= -->
+</div>
 
-<div id="app">
+</section>
 
 
-<!-- SCREEN 1 -->
+<!-- HOME PAGE -->
 
-<div class="screen active">
+<section id="home" class="screen hidden">
 
-    <div class="content">
+<div class="card">
 
-        <span class="big-heart">
-            ❤️
-        </span>
+<div class="heart">❤️</div>
 
-        <div class="tiny">
-            A little something for you
-        </div>
+<h2>How are you feeling today?</h2>
 
-        <h1>
-            Hey, <span class="pink">You.</span>
-        </h1>
+<p class="sub">
+Choose one. Your girlfriend has something to say.
+</p>
 
-        <div
-            class="changing-text"
-            id="heroText"
-        >
-            I made this little corner of the internet just for you.
-        </div>
+<div class="moods">
 
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            Open it ❤️
-        </button>
+<button onclick="mood('happy')">😊 I'm happy</button>
 
-    </div>
+<button onclick="mood('sad')">🥺 I'm sad</button>
+
+<button onclick="mood('annoyed')">😤 I'm annoyed</button>
+
+<button onclick="mood('miss')">😔 I miss you</button>
+
+<button onclick="mood('stress')">🫠 I'm stressed</button>
+
+<button onclick="mood('love')">❤️ I need love</button>
+
+<button onclick="mood('tired')">😴 I'm tired</button>
+
+<button onclick="mood('motivation')">🤍 I need motivation</button>
+
+<button onclick="mood('laugh')">😂 Make me laugh</button>
+
+<button onclick="mood('thinking')">🥰 I'm thinking of you</button>
+
+<button onclick="mood('angry')">😡 I'm angry</button>
+
+<button onclick="mood('hug')">🫂 I need a hug</button>
 
 </div>
 
 
-<!-- SCREEN 2 -->
+<h2 style="margin-top:30px">
+A few things about you...
+</h2>
 
-<div class="screen">
+<div class="tiles">
 
-    <div class="content">
+<button onclick="openSection('story')">
+📖 Our little story
+</button>
 
-        <div class="tiny">
-            Before anything else...
-        </div>
+<button onclick="openSection('dog')">
+🐶 Dog therapy
+</button>
 
-        <h2>
-            Do you know what I realised?
-        </h2>
+<button onclick="openSection('car')">
+🚗 For the car nerd
+</button>
 
-        <div class="story-box">
+<button onclick="openSection('books')">
+📚 Your bookshelf
+</button>
 
-            <p id="typeText"></p>
+<button onclick="openSection('letters')">
+💌 Open when...
+</button>
 
-        </div>
+<button onclick="openSection('secret')">
+🤫 Something secret
+</button>
 
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            Tell me... →
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- SCREEN 3 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            Our little story
-        </div>
-
-        <h2>
-            It started so simply.
-        </h2>
-
-        <p>
-            Two people.
-            Their own lives.
-            Their own plans.
-            <br><br>
-            Neither knowing how much
-            they were about to mean
-            to each other.
-        </p>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            And then? →
-        </button>
-
-    </div>
+<button onclick="openSection('dont')">
+♡ Don't click this
+</button>
 
 </div>
 
-
-<!-- SCREEN 4 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            Somewhere along the way
-        </div>
-
-        <h2>
-            You became important.
-        </h2>
-
-        <div
-            class="changing-text"
-            id="changeText"
-        >
-            Not suddenly.
-        </div>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            Keep going →
-        </button>
-
-    </div>
+<div class="footer">
+Made with an unreasonable amount of love ❤️
+</div>
 
 </div>
 
-
-<!-- SCREEN 5 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            The little things
-        </div>
-
-        <h2>
-            Maybe it was these.
-        </h2>
-
-        <div class="memory-grid">
-
-            <div class="memory">
-
-                <div class="memory-icon">
-                    😂
-                </div>
-
-                <h3>
-                    The laughter
-                </h3>
-
-                <p>
-                    The completely stupid
-                    moments that somehow
-                    became the best memories.
-                </p>
-
-            </div>
+</section>
 
 
-            <div class="memory">
+<!-- POPUP -->
 
-                <div class="memory-icon">
-                    🌙
-                </div>
+<div id="modal" class="modal hidden">
 
-                <h3>
-                    The conversations
-                </h3>
+<div class="modalbox">
 
-                <p>
-                    The random talks,
-                    the serious ones,
-                    and everything in between.
-                </p>
+<div id="modalContent"></div>
 
-            </div>
-
-
-            <div class="memory">
-
-                <div class="memory-icon">
-                    🤍
-                </div>
-
-                <h3>
-                    The comfort
-                </h3>
-
-                <p>
-                    That quiet feeling of
-                    knowing someone is simply
-                    there.
-                </p>
-
-            </div>
-
-        </div>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            There's more →
-        </button>
-
-    </div>
+<button class="close" onclick="closeModal()">
+Close ❤️
+</button>
 
 </div>
 
-
-<!-- SCREEN 6 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            Things I don't always say
-        </div>
-
-        <h2>
-            But maybe I should.
-        </h2>
-
-        <div
-            class="story-box"
-        >
-
-            <div
-                class="changing-text"
-                id="messageText"
-            >
-                You make ordinary days feel special.
-            </div>
-
-        </div>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            One more thing →
-        </button>
-
-    </div>
-
 </div>
-
-
-<!-- SCREEN 7 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            Time
-        </div>
-
-        <h2>
-            Look how much time has passed.
-        </h2>
-
-        <p>
-            And every second has become
-            part of our story.
-        </p>
-
-        <div class="timer">
-
-            <div class="time">
-
-                <span
-                    class="time-number"
-                    id="days"
-                >
-                    0
-                </span>
-
-                <span class="time-label">
-                    Days
-                </span>
-
-            </div>
-
-
-            <div class="time">
-
-                <span
-                    class="time-number"
-                    id="hours"
-                >
-                    0
-                </span>
-
-                <span class="time-label">
-                    Hours
-                </span>
-
-            </div>
-
-
-            <div class="time">
-
-                <span
-                    class="time-number"
-                    id="minutes"
-                >
-                    0
-                </span>
-
-                <span class="time-label">
-                    Minutes
-                </span>
-
-            </div>
-
-
-            <div class="time">
-
-                <span
-                    class="time-number"
-                    id="seconds"
-                >
-                    0
-                </span>
-
-                <span class="time-label">
-                    Seconds
-                </span>
-
-            </div>
-
-        </div>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            Read this ❤️
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- SCREEN 8 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            A letter
-        </div>
-
-        <h2>
-            If I could say it perfectly...
-        </h2>
-
-        <div class="letter">
-
-            <p>
-                I don't think there is one perfect
-                sentence that can explain what
-                you mean to me.
-            </p>
-
-            <p>
-                Maybe because it isn't one huge
-                moment. It's all the little things.
-            </p>
-
-            <p>
-                The laughs.
-                The conversations.
-                The memories.
-                The difficult days.
-                The beautiful ones.
-            </p>
-
-            <p>
-                Somewhere between all of those
-                moments, you became a part of my
-                life that I never want to take for granted.
-            </p>
-
-            <p>
-                I don't know exactly what the future
-                is going to look like.
-            </p>
-
-            <p>
-                But I know that when I look back,
-                I'll always be grateful that our paths
-                crossed.
-            </p>
-
-            <p>
-                And if I could choose one thing
-                to keep from all these years,
-                it would be the memories we made.
-            </p>
-
-            <div class="signature">
-                Always. ❤️
-            </div>
-
-        </div>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            There's one last thing...
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- SCREEN 9 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            Almost there
-        </div>
-
-        <h2>
-            I have a question.
-        </h2>
-
-        <div class="story-box">
-
-            <p>
-                If we could pause time for just
-                one moment...
-            </p>
-
-            <br>
-
-            <p>
-                would you choose one of
-                our memories?
-            </p>
-
-        </div>
-
-        <button
-            class="next-button"
-            onclick="nextScreen()"
-        >
-            I already know mine ❤️
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- SCREEN 10 -->
-
-<div class="screen">
-
-    <div class="content">
-
-        <div class="tiny">
-            The last page
-        </div>
-
-        <span
-            class="big-heart"
-        >
-            💌
-        </span>
-
-        <h2>
-            I choose you.
-        </h2>
-
-        <p>
-            Not because our story is perfect.
-            <br>
-            But because it's ours.
-        </p>
-
-        <button
-            class="next-button"
-            onclick="showSurprise()"
-        >
-            One last surprise ✨
-        </button>
-
-        <div
-            class="surprise"
-            id="surprise"
-        >
-
-            <h2>
-                ❤️
-            </h2>
-
-            <p>
-                Thank you for being part of my life.
-                <br><br>
-                For every laugh,
-                every memory,
-                every ordinary moment
-                that somehow became special.
-                <br><br>
-                I hope this isn't the end
-                of our story.
-                <br><br>
-                I hope it's just another beginning.
-                <br><br>
-                <span class="pink">
-                    Here's to everything still waiting for us.
-                </span>
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- PROGRESS DOTS -->
-
-<div
-    class="progress"
-    id="progress"
-></div>
 
 
 <script>
 
-/* ============================================
+function showHome(){
+
+document.getElementById("welcome").classList.add("hidden");
+
+document.getElementById("home").classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+const messages={
+
+happy:[
+"Look at you being happy. 🥹❤️ I hope you know how much I love seeing you like this. Now tell me what happened—I want the entire story.",
+"Your happiness looks really good on you, V. Please keep that smile for a little longer. ❤️"
+],
+
+sad:[
+"Come here, V. 🫂 You don't have to fix everything right now. Have a bad day if you need to. I'm still here.",
+"You don't have to be strong every second. For today, just breathe. And remember that somewhere, someone is very, very much on your side. ❤️"
+],
+
+annoyed:[
+"Okay, Mr. Grumpy. 😤 Take a breath before you declare war on the entire world. And yes, I am still giving you a hug.",
+"I know you're annoyed. I also know you're cute when you're annoyed, which is honestly very inconvenient for me. 😂❤️"
+],
+
+miss:[
+"I miss you too, V. More than this tiny screen can explain. If teleportation existed, I'd already be there annoying you. Until then—virtual hug. 🫂❤️",
+"Missing me? Good. At least we're both suffering equally. Come back to me soon. ❤️"
+],
+
+stress:[
+"Pause. Shoulders down. Breathe. You don't have to solve your whole life tonight. One thing at a time, okay? I've got you. ❤️",
+"Whatever is stressing you out right now is not bigger than you. Take it slowly. I believe in you."
+],
+
+love:[
+"LOVE EMERGENCY 🚨❤️ Treatment: one very long hug, one forehead kiss, and absolutely no escaping until I say so.",
+"Your emotional-support girlfriend is currently reporting for duty. Come here. 🫂"
+],
+
+tired:[
+"Enough for today. Go rest, V. Drink some water, put the phone away and let yourself be tired. Tomorrow can wait. ❤️",
+"You've done enough. Now go be a sleepy little human and rest. 😴❤️"
+],
+
+motivation:[
+"You don't need to have everything figured out. Just do the next thing. Then the next. I know what you're capable of, even when you forget. ❤️",
+"Come on, V. One more step. I'm cheering for you."
+],
+
+laugh:[
+"Official girlfriend announcement: you have been prescribed one stupid joke, three terrible impressions and unlimited teasing. Side effects may include smiling. 😂",
+"I was going to say something intelligent, but then I remembered you chose me. So here we are. 😂❤️"
+],
+
+thinking:[
+"You're thinking about me? Interesting. Because I may or may not have been thinking about you too. Okay fine. I definitely was. 🥰",
+"Somewhere, you're thinking about me and I'm thinking about you. I really like that. ❤️"
+],
+
+angry:[
+"You're allowed to be angry. Just don't let the anger decide everything for you. Take your time. When you're ready, talk to me. I'm not going anywhere. ❤️",
+"I'm not asking you to stop feeling angry. I'm just reminding you that you don't have to carry it alone."
+],
+
+hug:[
+"HUG REQUEST ACCEPTED. 🫂 Please remain still while your girlfriend delivers one unnecessarily long hug. No escape.",
+"Close your eyes for a second. Imagine I'm right there, arms around you. That's your hug until I can give you the real one. ❤️"
+]
+
+};
+
+
+function mood(type){
+
+let list=messages[type];
+
+let message=list[Math.floor(Math.random()*list.length)];
+
+showModal(
+"<h2>❤️</h2><p>"+message+"</p>"
+);
+
+}
+
+
+function openSection(type){
+
+let content="";
+
+if(type==="story"){
+
+content=`
+<h2>Our little story 📖</h2>
+
+<p>
+Two people. A thousand little moments.
+Some ridiculous, some difficult,
+some impossibly beautiful.
+</p>
+
+<p>
+And somehow, through all of them,
+there is still an us.
+</p>
+
+<p>More chapters coming soon. ❤️</p>
+`;
+
+}
+
+
+else if(type==="dog"){
+
+content=`
+<h2>Doctor Girlfriend prescribes... 🐶</h2>
+
+<div class="paws">🐾 🐾 🐾</div>
+
+<p>
+One dog. Unlimited cuddles.
+Ten minutes of forgetting the rest
+of the world.
+</p>
+
+<p>
+Prescription valid whenever V is having a bad day.
+</p>
+`;
+
+}
+
+
+else if(type==="car"){
+
+content=`
+<h2>Vroom vroom 🚗</h2>
+
+<div class="car">🚗💨</div>
+
+<p>
+I may not understand every tiny detail
+about cars...
+</p>
+
+<p>
+But I do understand that your face lights up
+when you talk about them.
+</p>
+
+<p>
+And honestly, I love that.
+</p>
+`;
+
+}
+
+
+else if(type==="books"){
+
+content=`
+<h2>Your bookshelf 📚</h2>
+
+<p>
+For the man who can turn a normal evening
+into a discussion about politics, history
+and the entire state of the world. 😂
+</p>
+
+<p>
+Keep reading. Keep questioning.
+And occasionally let your girlfriend
+interrupt your analysis.
+</p>
+`;
+
+}
+
+
+else if(type==="secret"){
+
+content=`
+<h2>Something secret 🤫</h2>
+
+<p>
+V, behind all my teasing, nonsense
+and dramatic behaviour, there is a girl
+who genuinely feels very lucky to have you.
+</p>
+
+<p>
+I don't need every day to be perfect.
+I just want more ordinary days with you.
+</p>
+
+<p>That's all. ❤️</p>
+`;
+
+}
+
+
+else if(type==="dont"){
+
+content=`
+<h2>YOU WERE WARNED. 😂</h2>
+
+<p>
+Congratulations.
+You clicked the button you were specifically
+told not to click.
+</p>
+
+<p>
+Your punishment is...
+another hug. 🫂❤️
+</p>
+`;
+
+}
+
+
+else if(type==="letters"){
+
+content=`
+
+<h2>Open when... 💌</h2>
+
+<p>Pick one.</p>
+
+<div class="letters">
+
+<button onclick="letter('miss')">
+When you miss me
+</button>
+
+<button onclick="letter('bad')">
+When you had a bad day
+</button>
+
+<button onclick="letter('angry')">
+When you're angry with me
+</button>
+
+<button onclick="letter('sleep')">
+When you can't sleep
+</button>
+
+<button onclick="letter('love')">
+When you need to know how much I love you
+</button>
+
+</div>
+
+`;
+
+}
+
+showModal(content);
+
+}
+
+
+function letter(type){
+
+let message="";
+
+if(type==="miss"){
+
+message=
+"If you're reading this, I wish I could be there beside you. Until I can, consider this a tiny piece of me sitting next to you. ❤️";
+
+}
+
+else if(type==="bad"){
+
+message=
+"Whatever happened today, you made it through. Come tell me everything when you're ready. I'm on your side. 🫂";
+
+}
+
+else if(type==="angry"){
+
+message=
+"Take a little time. Breathe. Then come talk to me. I'd rather understand you than win an argument. ❤️";
+
+}
+
+else if(type==="sleep"){
+
+message=
+"Put the phone down after this, close your eyes and imagine my arms around you. Goodnight, V. 😴❤️";
+
+}
+
+else{
+
+message=
+"In case you ever forget: I love your ridiculousness, your thoughts, your little habits, your dreams, and the person you are when nobody is watching. ❤️";
+
+}
+
+showModal(
+"<h2>💌 A little letter</h2><p>"+message+"</p>"
+);
+
+}
+
+
+function showModal(content){
+
+document.getElementById("modalContent").innerHTML=content;
+
+document.getElementById("modal").classList.remove("hidden");
+
+}
+
+
+function closeModal(){
+
+document.getElementById("modal").classList.add("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
