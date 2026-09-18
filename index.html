@@ -1,621 +1,870 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For V ❤️</title>
+<title>For You ❤️</title>
 
 <style>
-*{box-sizing:border-box}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-min-height:100vh;
-background:linear-gradient(135deg,#fff0f6,#f5edff,#eaf8ff);
-color:#40283a;
-}
+    html {
+        scroll-behavior: smooth;
+    }
 
-.screen{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:25px 15px;
-}
+    body {
+        font-family: Georgia, "Times New Roman", serif;
+        background: linear-gradient(135deg, #160b18, #30152c, #160b18);
+        color: #fff;
+        overflow-x: hidden;
+    }
 
-.card{
-width:100%;
-max-width:720px;
-padding:28px;
-text-align:center;
-background:rgba(255,255,255,.8);
-border-radius:28px;
-box-shadow:0 15px 50px rgba(80,40,80,.15);
-}
+    /* ---------- BACKGROUND ---------- */
 
-.hidden{
-display:none !important;
-}
+    .background-glow {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.18;
+        z-index: -2;
+        animation: glowMove 10s infinite alternate ease-in-out;
+    }
 
-.heart{
-font-size:50px;
-animation:beat 1.4s infinite;
-}
+    .glow1 {
+        background: #ff4f91;
+        top: -200px;
+        left: -150px;
+    }
 
-@keyframes beat{
-50%{transform:scale(1.12)}
-}
+    .glow2 {
+        background: #b967ff;
+        bottom: -200px;
+        right: -150px;
+        animation-delay: 3s;
+    }
 
-h1{
-font-size:42px;
-margin:8px 0;
-}
+    @keyframes glowMove {
+        from {
+            transform: translate(0, 0) scale(1);
+        }
+        to {
+            transform: translate(100px, 80px) scale(1.3);
+        }
+    }
 
-h2{
-margin-top:10px;
-}
+    /* ---------- FLOATING HEARTS ---------- */
 
-p{
-line-height:1.6;
-}
+    .heart {
+        position: fixed;
+        bottom: -50px;
+        font-size: 20px;
+        opacity: 0;
+        pointer-events: none;
+        animation: floatHeart linear forwards;
+        z-index: 10;
+    }
 
-.sub{
-color:#765d70;
-}
+    @keyframes floatHeart {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
 
-button{
-border:0;
-border-radius:18px;
-padding:14px 17px;
-margin:6px;
-font-size:15px;
-font-weight:bold;
-cursor:pointer;
-background:linear-gradient(135deg,#ffd1e4,#dfd0ff);
-color:#40283a;
-box-shadow:0 6px 15px rgba(80,40,80,.12);
-}
+        10% {
+            opacity: 0.8;
+        }
 
-button:active{
-transform:scale(.96);
-}
+        90% {
+            opacity: 0.6;
+        }
 
-.enter{
-font-size:18px;
-padding:16px 32px;
-background:linear-gradient(135deg,#ffb5d1,#cdb7ff);
-}
+        100% {
+            transform: translateY(-110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
 
-.moods,
-.tiles,
-.letters{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:8px;
-margin-top:20px;
-}
+    /* ---------- HERO ---------- */
 
-.moods button,
-.tiles button,
-.letters button{
-margin:0;
-}
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 30px;
+        position: relative;
+    }
 
-.modal{
-position:fixed;
-inset:0;
-background:rgba(40,20,40,.5);
-display:flex;
-align-items:center;
-justify-content:center;
-padding:18px;
-z-index:10;
-}
+    .hero-content {
+        max-width: 850px;
+        animation: heroAppear 2s ease forwards;
+    }
 
-.modalbox{
-background:white;
-width:100%;
-max-width:600px;
-max-height:85vh;
-overflow:auto;
-border-radius:25px;
-padding:28px;
-text-align:center;
-}
+    @keyframes heroAppear {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-.close{
-background:#eee1eb;
-}
+    .small-text {
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #f7b4cc;
+        margin-bottom: 25px;
+    }
 
-.car{
-font-size:40px;
-animation:drive 2s infinite alternate;
-}
+    .hero h1 {
+        font-size: clamp(48px, 10vw, 95px);
+        line-height: 1;
+        font-weight: normal;
+        margin-bottom: 25px;
+        text-shadow: 0 0 30px rgba(255, 104, 161, 0.4);
+    }
 
-@keyframes drive{
-to{transform:translateX(100px)}
-}
+    .hero h1 span {
+        color: #ff8eb8;
+    }
 
-.paws{
-font-size:30px;
-}
+    .changing-line {
+        min-height: 60px;
+        font-size: clamp(20px, 4vw, 30px);
+        color: #f9dce7;
+        font-style: italic;
+        transition: opacity 0.5s ease;
+    }
 
-.footer{
-margin-top:25px;
-font-size:13px;
-color:#8c7184;
-}
+    .scroll-btn {
+        margin-top: 50px;
+        display: inline-block;
+        padding: 14px 28px;
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 50px;
+        color: white;
+        text-decoration: none;
+        backdrop-filter: blur(10px);
+        background: rgba(255,255,255,0.08);
+        transition: 0.3s;
+    }
+
+    .scroll-btn:hover {
+        transform: scale(1.08);
+        background: rgba(255, 130, 180, 0.2);
+    }
+
+    /* ---------- SECTIONS ---------- */
+
+    section {
+        padding: 100px 25px;
+        text-align: center;
+    }
+
+    .section-inner {
+        max-width: 850px;
+        margin: auto;
+    }
+
+    .section-title {
+        font-size: clamp(35px, 7vw, 55px);
+        font-weight: normal;
+        margin-bottom: 30px;
+    }
+
+    .section-subtitle {
+        color: #dcb9c7;
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    /* ---------- MEMORY CARDS ---------- */
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .card {
+        padding: 30px 22px;
+        border-radius: 25px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(12px);
+        transition: 0.5s;
+    }
+
+    .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba(255, 120, 170, 0.1);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .card-icon {
+        font-size: 38px;
+        margin-bottom: 18px;
+    }
+
+    .card h3 {
+        font-size: 23px;
+        font-weight: normal;
+        margin-bottom: 12px;
+    }
+
+    .card p {
+        color: #d8c0cb;
+        line-height: 1.7;
+        font-size: 15px;
+    }
+
+    /* ---------- CHANGING MESSAGE ---------- */
+
+    .message-box {
+        margin: 60px auto 0;
+        padding: 40px 25px;
+        max-width: 700px;
+        min-height: 180px;
+        border-radius: 30px;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    #message {
+        font-size: clamp(22px, 4vw, 32px);
+        line-height: 1.5;
+        font-style: italic;
+        color: #ffe5ef;
+        transition: opacity 0.5s;
+    }
+
+    /* ---------- TIMER ---------- */
+
+    .timer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 45px;
+    }
+
+    .time-box {
+        min-width: 90px;
+        padding: 20px 15px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .time-number {
+        font-size: 30px;
+        color: #ff9ec1;
+        display: block;
+    }
+
+    .time-label {
+        font-size: 11px;
+        color: #cbb4bf;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    /* ---------- LETTER ---------- */
+
+    .letter {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 30px;
+        padding: 45px 30px;
+        margin-top: 45px;
+        line-height: 2;
+        color: #f4dce5;
+        text-align: left;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .letter p {
+        margin-bottom: 20px;
+    }
+
+    .signature {
+        text-align: right;
+        font-size: 22px;
+        color: #ff9fc2;
+        margin-top: 35px;
+        font-style: italic;
+    }
+
+    /* ---------- BUTTON ---------- */
+
+    .surprise-btn {
+        margin-top: 45px;
+        padding: 17px 35px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #ff6f9f, #c76cff);
+        color: white;
+        font-size: 16px;
+        font-family: inherit;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(255,80,150,0.25);
+        transition: 0.3s;
+    }
+
+    .surprise-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 15px 40px rgba(255,80,150,0.4);
+    }
+
+    /* ---------- SURPRISE ---------- */
+
+    #surprise {
+        display: none;
+        margin: 45px auto 0;
+        max-width: 700px;
+        padding: 40px 25px;
+        border-radius: 30px;
+        background: rgba(255, 110, 165, 0.1);
+        border: 1px solid rgba(255, 150, 190, 0.25);
+        animation: surpriseAppear 1s ease forwards;
+    }
+
+    @keyframes surpriseAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    #surprise h2 {
+        font-size: 40px;
+        font-weight: normal;
+        margin-bottom: 20px;
+        color: #ffb3ce;
+    }
+
+    #surprise p {
+        font-size: 20px;
+        line-height: 1.8;
+        color: #f7dce7;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+        padding: 70px 20px 40px;
+        text-align: center;
+        color: #bda5b0;
+    }
+
+    footer .big-heart {
+        font-size: 45px;
+        animation: heartbeat 1.5s infinite;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    @keyframes heartbeat {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+    }
+
+    /* ---------- FADE ON SCROLL ---------- */
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 600px) {
+
+        section {
+            padding: 80px 18px;
+        }
+
+        .hero {
+            padding: 20px;
+        }
+
+        .letter {
+            padding: 30px 22px;
+        }
+
+        .time-box {
+            min-width: 75px;
+        }
+
+        .time-number {
+            font-size: 24px;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<!-- WELCOME PAGE -->
+<div class="background-glow glow1"></div>
+<div class="background-glow glow2"></div>
 
-<section id="welcome" class="screen">
+<!-- HERO -->
 
-<div class="card">
+<section class="hero">
+    <div class="hero-content">
 
-<div class="heart">💌</div>
+        <div class="small-text">
+            A little something for you
+        </div>
 
-<p class="sub">a tiny corner of the internet</p>
+        <h1>
+            Hey, <span>You</span> ❤️
+        </h1>
 
-<h1>For V ❤️</h1>
+        <div class="changing-line" id="changingLine">
+            Some people just become a part of your life...
+        </div>
 
-<p>
-Made by the girl who loves annoying you,
-worrying about you, and loving you a little
-more than she admits.
-</p>
+        <a href="#story" class="scroll-btn">
+            Come a little closer ↓
+        </a>
 
-<button class="enter" onclick="showHome()">
-Come in →
-</button>
-
-<p class="sub">
-P.S. Yes, this entire website is about you.
-</p>
-
-</div>
-
+    </div>
 </section>
 
 
-<!-- HOME PAGE -->
+<!-- STORY -->
 
-<section id="home" class="screen hidden">
+<section id="story">
+    <div class="section-inner reveal">
 
-<div class="card">
+        <div class="small-text">
+            OUR LITTLE STORY
+        </div>
 
-<div class="heart">❤️</div>
+        <h2 class="section-title">
+            And somehow, here we are.
+        </h2>
 
-<h2>How are you feeling today?</h2>
+        <p class="section-subtitle">
+            It's funny to think about how everything started.
+            Two people simply living their own lives,
+            without knowing that one day they would become
+            such an important part of each other's story.
+        </p>
 
-<p class="sub">
-Choose one. Your girlfriend has something to say.
-</p>
+        <div class="cards">
 
-<div class="moods">
+            <div class="card">
+                <div class="card-icon">🌙</div>
+                <h3>Then</h3>
+                <p>
+                    We had no idea where life was taking us.
+                    We were just two people, unaware of
+                    everything that was waiting ahead.
+                </p>
+            </div>
 
-<button onclick="mood('happy')">😊 I'm happy</button>
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h3>Somehow</h3>
+                <p>
+                    Somewhere between ordinary days,
+                    conversations and countless little moments,
+                    you became someone extraordinary to me.
+                </p>
+            </div>
 
-<button onclick="mood('sad')">🥺 I'm sad</button>
+            <div class="card">
+                <div class="card-icon">❤️</div>
+                <h3>Now</h3>
+                <p>
+                    And now, when I look back,
+                    I realise that some of the best parts
+                    of my life have your name written all over them.
+                </p>
+            </div>
 
-<button onclick="mood('annoyed')">😤 I'm annoyed</button>
+        </div>
 
-<button onclick="mood('miss')">😔 I miss you</button>
-
-<button onclick="mood('stress')">🫠 I'm stressed</button>
-
-<button onclick="mood('love')">❤️ I need love</button>
-
-<button onclick="mood('tired')">😴 I'm tired</button>
-
-<button onclick="mood('motivation')">🤍 I need motivation</button>
-
-<button onclick="mood('laugh')">😂 Make me laugh</button>
-
-<button onclick="mood('thinking')">🥰 I'm thinking of you</button>
-
-<button onclick="mood('angry')">😡 I'm angry</button>
-
-<button onclick="mood('hug')">🫂 I need a hug</button>
-
-</div>
-
-
-<h2 style="margin-top:30px">
-A few things about you...
-</h2>
-
-<div class="tiles">
-
-<button onclick="openSection('story')">
-📖 Our little story
-</button>
-
-<button onclick="openSection('dog')">
-🐶 Dog therapy
-</button>
-
-<button onclick="openSection('car')">
-🚗 For the car nerd
-</button>
-
-<button onclick="openSection('books')">
-📚 Your bookshelf
-</button>
-
-<button onclick="openSection('letters')">
-💌 Open when...
-</button>
-
-<button onclick="openSection('secret')">
-🤫 Something secret
-</button>
-
-<button onclick="openSection('dont')">
-♡ Don't click this
-</button>
-
-</div>
-
-<div class="footer">
-Made with an unreasonable amount of love ❤️
-</div>
-
-</div>
-
+    </div>
 </section>
 
 
-<!-- POPUP -->
+<!-- CHANGING MESSAGES -->
 
-<div id="modal" class="modal hidden">
+<section>
+    <div class="section-inner reveal">
 
-<div class="modalbox">
+        <div class="small-text">
+            THINGS I SOMETIMES DON'T SAY
+        </div>
 
-<div id="modalContent"></div>
+        <h2 class="section-title">
+            So let me say them here.
+        </h2>
 
-<button class="close" onclick="closeModal()">
-Close ❤️
-</button>
+        <div class="message-box">
+            <div id="message">
+                You make ordinary days feel a little less ordinary.
+            </div>
+        </div>
 
-</div>
+    </div>
+</section>
 
-</div>
+
+<!-- TIMER -->
+
+<section>
+    <div class="section-inner reveal">
+
+        <div class="small-text">
+            TIME FLIES
+        </div>
+
+        <h2 class="section-title">
+            Look how far we've come.
+        </h2>
+
+        <p class="section-subtitle">
+            Every second becomes a memory.
+            And somehow, I still want many more of them.
+        </p>
+
+        <div class="timer">
+
+            <div class="time-box">
+                <span class="time-number" id="days">0</span>
+                <span class="time-label">Days</span>
+            </div>
+
+            <div class="time-box">
+                <span class="time-number" id="hours">0</span>
+                <span class="time-label">Hours</span>
+            </div>
+
+            <div class="time-box">
+                <span class="time-number" id="minutes">0</span>
+                <span class="time-label">Minutes</span>
+            </div>
+
+            <div class="time-box">
+                <span class="time-number" id="seconds">0</span>
+                <span class="time-label">Seconds</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- LETTER -->
+
+<section>
+    <div class="section-inner reveal">
+
+        <div class="small-text">
+            A LETTER
+        </div>
+
+        <h2 class="section-title">
+            If I had to put it into words...
+        </h2>
+
+        <div class="letter">
+
+            <p>
+                I don't think I will ever find the perfect words
+                to explain what you mean to me.
+            </p>
+
+            <p>
+                Maybe that's because it's not one big thing.
+                It's all the little things. The conversations.
+                The laughs. The stupid moments. The difficult days.
+                The comfort of knowing that somewhere in this huge
+                world, there is someone who feels like home.
+            </p>
+
+            <p>
+                It's funny how life works. We don't always realise
+                that we're living a moment we'll someday miss.
+                And if I could go back and tell my past self
+                everything that was waiting ahead,
+                I probably wouldn't believe it.
+            </p>
+
+            <p>
+                But if there is one thing I know,
+                it's that I'm grateful our paths crossed.
+                Grateful for every memory we've made,
+                every lesson, every laugh,
+                and every version of us that brought us here.
+            </p>
+
+            <p>
+                I don't know exactly what the future looks like.
+                And maybe that's the beautiful part.
+                We get to discover it one day at a time.
+            </p>
+
+            <p>
+                But whatever happens,
+                I hope you always remember this:
+                you have been, and will always be,
+                a very special part of my story.
+            </p>
+
+            <div class="signature">
+                Always ❤️
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SURPRISE -->
+
+<section>
+    <div class="section-inner reveal">
+
+        <div class="small-text">
+            ONE LAST THING
+        </div>
+
+        <h2 class="section-title">
+            I saved something for you.
+        </h2>
+
+        <button class="surprise-btn" onclick="showSurprise()">
+            Open the surprise 💌
+        </button>
+
+        <div id="surprise">
+
+            <h2>You're stuck with me. ❤️</h2>
+
+            <p>
+                Through the good days, the weird days,
+                the chaotic days and all the beautiful ones
+                in between...
+                <br><br>
+                I'm really, really glad it's you.
+                <br><br>
+                And if I could choose one thing to keep
+                from all the years we've lived so far,
+                it would be the memories we made together.
+                <br><br>
+                Here's to all the ones we haven't made yet. ✨
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="big-heart">
+        ❤️
+    </div>
+
+    <p>
+        Made with a little too much love.
+    </p>
+
+    <p style="margin-top:12px; font-size:12px;">
+        And maybe a tiny bit of madness.
+    </p>
+
+</footer>
 
 
 <script>
 
-function showHome(){
+    /* =========================================
+       CHANGING HERO SENTENCES
+    ========================================= */
 
-document.getElementById("welcome").classList.add("hidden");
+    const heroLines = [
+        "Some people just become a part of your life...",
+        "Somehow, you became one of my favourite people.",
+        "And suddenly, ordinary moments became memories.",
+        "Maybe it was coincidence. Maybe it was meant to be.",
+        "Either way, I'm really glad it happened.",
+        "Because life is a little better with you in it. ❤️"
+    ];
 
-document.getElementById("home").classList.remove("hidden");
+    let heroIndex = 0;
+    const changingLine = document.getElementById("changingLine");
 
-window.scrollTo(0,0);
+    setInterval(() => {
 
-}
+        changingLine.style.opacity = "0";
 
+        setTimeout(() => {
 
-const messages={
+            heroIndex = (heroIndex + 1) % heroLines.length;
 
-happy:[
-"Look at you being happy. 🥹❤️ I hope you know how much I love seeing you like this. Now tell me what happened—I want the entire story.",
-"Your happiness looks really good on you, V. Please keep that smile for a little longer. ❤️"
-],
+            changingLine.textContent = heroLines[heroIndex];
 
-sad:[
-"Come here, V. 🫂 You don't have to fix everything right now. Have a bad day if you need to. I'm still here.",
-"You don't have to be strong every second. For today, just breathe. And remember that somewhere, someone is very, very much on your side. ❤️"
-],
+            changingLine.style.opacity = "1";
 
-annoyed:[
-"Okay, Mr. Grumpy. 😤 Take a breath before you declare war on the entire world. And yes, I am still giving you a hug.",
-"I know you're annoyed. I also know you're cute when you're annoyed, which is honestly very inconvenient for me. 😂❤️"
-],
+        }, 500);
 
-miss:[
-"I miss you too, V. More than this tiny screen can explain. If teleportation existed, I'd already be there annoying you. Until then—virtual hug. 🫂❤️",
-"Missing me? Good. At least we're both suffering equally. Come back to me soon. ❤️"
-],
+    }, 3500);
 
-stress:[
-"Pause. Shoulders down. Breathe. You don't have to solve your whole life tonight. One thing at a time, okay? I've got you. ❤️",
-"Whatever is stressing you out right now is not bigger than you. Take it slowly. I believe in you."
-],
 
-love:[
-"LOVE EMERGENCY 🚨❤️ Treatment: one very long hug, one forehead kiss, and absolutely no escaping until I say so.",
-"Your emotional-support girlfriend is currently reporting for duty. Come here. 🫂"
-],
+    /* =========================================
+       CHANGING HEARTFELT MESSAGES
+    ========================================= */
 
-tired:[
-"Enough for today. Go rest, V. Drink some water, put the phone away and let yourself be tired. Tomorrow can wait. ❤️",
-"You've done enough. Now go be a sleepy little human and rest. 😴❤️"
-],
+    const messages = [
+        "You make ordinary days feel a little less ordinary.",
+        "I still smile when I randomly remember some of our moments.",
+        "You became a memory I never want to forget.",
+        "Some people enter your life quietly and somehow become everything.",
+        "I hope you know how much you mean to me.",
+        "If memories had a favourite person, mine would probably choose you.",
+        "There are a thousand things I could say, but somehow 'I'm glad I have you' says enough.",
+        "Whatever happens next, I'll always be grateful for our story.",
+        "You are one of those rare people who make life feel a little warmer.",
+        "And yes... I'd choose our story all over again. ❤️"
+    ];
 
-motivation:[
-"You don't need to have everything figured out. Just do the next thing. Then the next. I know what you're capable of, even when you forget. ❤️",
-"Come on, V. One more step. I'm cheering for you."
-],
+    let messageIndex = 0;
+    const messageElement = document.getElementById("message");
 
-laugh:[
-"Official girlfriend announcement: you have been prescribed one stupid joke, three terrible impressions and unlimited teasing. Side effects may include smiling. 😂",
-"I was going to say something intelligent, but then I remembered you chose me. So here we are. 😂❤️"
-],
+    setInterval(() => {
 
-thinking:[
-"You're thinking about me? Interesting. Because I may or may not have been thinking about you too. Okay fine. I definitely was. 🥰",
-"Somewhere, you're thinking about me and I'm thinking about you. I really like that. ❤️"
-],
+        messageElement.style.opacity = "0";
 
-angry:[
-"You're allowed to be angry. Just don't let the anger decide everything for you. Take your time. When you're ready, talk to me. I'm not going anywhere. ❤️",
-"I'm not asking you to stop feeling angry. I'm just reminding you that you don't have to carry it alone."
-],
+        setTimeout(() => {
 
-hug:[
-"HUG REQUEST ACCEPTED. 🫂 Please remain still while your girlfriend delivers one unnecessarily long hug. No escape.",
-"Close your eyes for a second. Imagine I'm right there, arms around you. That's your hug until I can give you the real one. ❤️"
-]
+            messageIndex = (messageIndex + 1) % messages.length;
 
-};
+            messageElement.textContent = messages[messageIndex];
 
+            messageElement.style.opacity = "1";
 
-function mood(type){
+        }, 500);
 
-let list=messages[type];
+    }, 4000);
 
-let message=list[Math.floor(Math.random()*list.length)];
 
-showModal(
-"<h2>❤️</h2><p>"+message+"</p>"
-);
+    /* =========================================
+       RELATIONSHIP TIMER
 
-}
+       CHANGE THIS DATE TO YOUR IMPORTANT DATE
 
+       Format:
+       "YYYY-MM-DDTHH:MM:SS"
+    ========================================= */
 
-function openSection(type){
+    const startDate = new Date("2022-01-01T00:00:00");
 
-let content="";
+    function updateTimer() {
 
-if(type==="story"){
+        const now = new Date();
 
-content=`
-<h2>Our little story 📖</h2>
+        let difference = now - startDate;
 
-<p>
-Two people. A thousand little moments.
-Some ridiculous, some difficult,
-some impossibly beautiful.
-</p>
+        if (difference < 0) {
+            difference = 0;
+        }
 
-<p>
-And somehow, through all of them,
-there is still an us.
-</p>
+        const seconds = Math.floor(difference / 1000);
 
-<p>More chapters coming soon. ❤️</p>
-`;
+        const days = Math.floor(seconds / 86400);
 
-}
+        const hours = Math.floor(
+            (seconds % 86400) / 3600
+        );
 
+        const minutes = Math.floor(
+            (seconds % 3600) / 60
+        );
 
-else if(type==="dog"){
+        const secs = seconds % 60;
 
-content=`
-<h2>Doctor Girlfriend prescribes... 🐶</h2>
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent =
+            String(hours).padStart(2, "0");
 
-<div class="paws">🐾 🐾 🐾</div>
+        document.getElementById("minutes").textContent =
+            String(minutes).padStart(2, "0");
 
-<p>
-One dog. Unlimited cuddles.
-Ten minutes of forgetting the rest
-of the world.
-</p>
+        document.getElementById("seconds").textContent =
+            String(secs).padStart(2, "0");
+    }
 
-<p>
-Prescription valid whenever V is having a bad day.
-</p>
-`;
+    updateTimer();
 
-}
+    setInterval(updateTimer, 1000);
 
 
-else if(type==="car"){
+    /* =========================================
+       FLOATING HEARTS
+    ========================================= */
 
-content=`
-<h2>Vroom vroom 🚗</h2>
+    function createHeart() {
 
-<div class="car">🚗💨</div>
+        const heart = document.createElement("div");
 
-<p>
-I may not understand every tiny detail
-about cars...
-</p>
+        heart.className = "heart";
 
-<p>
-But I do understand that your face lights up
-when you talk about them.
-</p>
+        const hearts = ["❤️", "💗", "💕", "💖", "✨", "♥"];
 
-<p>
-And honestly, I love that.
-</p>
-`;
+        heart.textContent =
+            hearts[Math.floor(Math.random() * hearts.length)];
 
-}
+        heart.style.left =
+            Math.random() * 100 + "vw";
 
+        heart.style.fontSize =
+            (12 + Math.random() * 20) + "px";
 
-else if(type==="books"){
+        const duration =
+            5 + Math.random() * 7;
 
-content=`
-<h2>Your bookshelf 📚</h2>
+        heart.style.animationDuration =
+            duration + "s";
 
-<p>
-For the man who can turn a normal evening
-into a discussion about politics, history
-and the entire state of the world. 😂
-</p>
+        document.body.appendChild(heart);
 
-<p>
-Keep reading. Keep questioning.
-And occasionally let your girlfriend
-interrupt your analysis.
-</p>
-`;
-
-}
-
-
-else if(type==="secret"){
-
-content=`
-<h2>Something secret 🤫</h2>
-
-<p>
-V, behind all my teasing, nonsense
-and dramatic behaviour, there is a girl
-who genuinely feels very lucky to have you.
-</p>
-
-<p>
-I don't need every day to be perfect.
-I just want more ordinary days with you.
-</p>
-
-<p>That's all. ❤️</p>
-`;
-
-}
-
-
-else if(type==="dont"){
-
-content=`
-<h2>YOU WERE WARNED. 😂</h2>
-
-<p>
-Congratulations.
-You clicked the button you were specifically
-told not to click.
-</p>
-
-<p>
-Your punishment is...
-another hug. 🫂❤️
-</p>
-`;
-
-}
-
-
-else if(type==="letters"){
-
-content=`
-
-<h2>Open when... 💌</h2>
-
-<p>Pick one.</p>
-
-<div class="letters">
-
-<button onclick="letter('miss')">
-When you miss me
-</button>
-
-<button onclick="letter('bad')">
-When you had a bad day
-</button>
-
-<button onclick="letter('angry')">
-When you're angry with me
-</button>
-
-<button onclick="letter('sleep')">
-When you can't sleep
-</button>
-
-<button onclick="letter('love')">
-When you need to know how much I love you
-</button>
-
-</div>
-
-`;
-
-}
-
-showModal(content);
-
-}
-
-
-function letter(type){
-
-let message="";
-
-if(type==="miss"){
-
-message=
-"If you're reading this, I wish I could be there beside you. Until I can, consider this a tiny piece of me sitting next to you. ❤️";
-
-}
-
-else if(type==="bad"){
-
-message=
-"Whatever happened today, you made it through. Come tell me everything when you're ready. I'm on your side. 🫂";
-
-}
-
-else if(type==="angry"){
-
-message=
-"Take a little time. Breathe. Then come talk to me. I'd rather understand you than win an argument. ❤️";
-
-}
-
-else if(type==="sleep"){
-
-message=
-"Put the phone down after this, close your eyes and imagine my arms around you. Goodnight, V. 😴❤️";
-
-}
-
-else{
-
-message=
-"In case you ever forget: I love your ridiculousness, your thoughts, your little habits, your dreams, and the person you are when nobody is watching. ❤️";
-
-}
-
-showModal(
-"<h2>💌 A little letter</h2><p>"+message+"</p>"
-);
-
-}
-
-
-function showModal(content){
-
-document.getElementById("modalContent").innerHTML=content;
-
-document.getElementById("modal").classList.remove("hidden");
-
-}
-
-
-function closeModal(){
-
-document.getElementById("modal").classList.add("hidden");
-
-}
-
-</script>
-
-</body>
-</html>
+        setTimeout(() => {
+            
