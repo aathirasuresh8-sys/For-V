@@ -1,65 +1,621 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For V ❤️</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,sans-serif;color:#40283a;background:linear-gradient(135deg,#fff0f6,#f5edff,#eaf8ff);overflow-x:hidden}
-.screen{min-height:100vh;padding:28px 18px;display:flex;align-items:center;justify-content:center}.card{width:min(760px,100%);background:rgba(255,255,255,.76);backdrop-filter:blur(12px);border:1px solid #fff;border-radius:28px;padding:28px;box-shadow:0 18px 55px #64406a22;text-align:center}.hidden{display:none!important}
-.heart{font-size:48px;animation:beat 1.5s infinite}@keyframes beat{50%{transform:scale(1.12)}}h1{font-size:42px;margin:5px 0 10px}h2{font-size:27px;margin:8px 0 12px}p{line-height:1.6}.sub{color:#765d70}
-button{border:0;border-radius:18px;padding:14px 17px;margin:6px;font-size:15px;font-weight:700;cursor:pointer;color:#452d3e;background:linear-gradient(135deg,#ffd6e7,#e6d9ff);box-shadow:0 7px 18px #643c641f;transition:.2s}button:active{transform:scale(.97)}.enter{font-size:18px;padding:16px 30px;background:linear-gradient(135deg,#ffb7d2,#cdb7ff)}
-.moods,.tiles,.letters{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;margin-top:18px}.moods button,.tiles button,.letters button{margin:0}
-.modal{position:fixed;inset:0;background:#2a192a73;display:flex;align-items:center;justify-content:center;padding:18px;z-index:10}.modalbox{width:min(620px,100%);max-height:85vh;overflow:auto;background:#fffafd;border-radius:26px;padding:27px;box-shadow:0 20px 70px #0004;animation:pop .25s ease}@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-.close{background:#eee1eb}.car{font-size:38px;display:inline-block;animation:drive 2.5s infinite alternate ease-in-out}@keyframes drive{to{transform:translateX(120px)}}.paws{font-size:30px;letter-spacing:10px}.sparkles{font-size:25px;letter-spacing:12px}.footer{margin-top:25px;font-size:13px;color:#8c7184}.small{font-size:13px;color:#8b7183}
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+background:linear-gradient(135deg,#fff0f6,#f5edff,#eaf8ff);
+color:#40283a;
+}
+
+.screen{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:25px 15px;
+}
+
+.card{
+width:100%;
+max-width:720px;
+padding:28px;
+text-align:center;
+background:rgba(255,255,255,.8);
+border-radius:28px;
+box-shadow:0 15px 50px rgba(80,40,80,.15);
+}
+
+.hidden{
+display:none !important;
+}
+
+.heart{
+font-size:50px;
+animation:beat 1.4s infinite;
+}
+
+@keyframes beat{
+50%{transform:scale(1.12)}
+}
+
+h1{
+font-size:42px;
+margin:8px 0;
+}
+
+h2{
+margin-top:10px;
+}
+
+p{
+line-height:1.6;
+}
+
+.sub{
+color:#765d70;
+}
+
+button{
+border:0;
+border-radius:18px;
+padding:14px 17px;
+margin:6px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(135deg,#ffd1e4,#dfd0ff);
+color:#40283a;
+box-shadow:0 6px 15px rgba(80,40,80,.12);
+}
+
+button:active{
+transform:scale(.96);
+}
+
+.enter{
+font-size:18px;
+padding:16px 32px;
+background:linear-gradient(135deg,#ffb5d1,#cdb7ff);
+}
+
+.moods,
+.tiles,
+.letters{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:8px;
+margin-top:20px;
+}
+
+.moods button,
+.tiles button,
+.letters button{
+margin:0;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(40,20,40,.5);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:10;
+}
+
+.modalbox{
+background:white;
+width:100%;
+max-width:600px;
+max-height:85vh;
+overflow:auto;
+border-radius:25px;
+padding:28px;
+text-align:center;
+}
+
+.close{
+background:#eee1eb;
+}
+
+.car{
+font-size:40px;
+animation:drive 2s infinite alternate;
+}
+
+@keyframes drive{
+to{transform:translateX(100px)}
+}
+
+.paws{
+font-size:30px;
+}
+
+.footer{
+margin-top:25px;
+font-size:13px;
+color:#8c7184;
+}
 </style>
 </head>
+
 <body>
-<section id="welcome" class="screen"><div class="card"><div class="heart">💌</div><p class="sub">a tiny corner of the internet</p><h1>For V ❤️</h1><p>Made by the girl who loves annoying you, worrying about you, and loving you a little more than she admits.</p><button class="enter" onclick="showHome()">Come in →</button><p class="small">P.S. Yes, this entire website is about you.</p></div></section>
 
-<section id="home" class="screen hidden"><div class="card"><div class="heart">❤️</div><h2>How are you feeling today?</h2><p class="sub">Choose one. Your girlfriend has something to say.</p>
-<div class="moods">
-<button onclick="mood('happy')">😊 I'm happy</button><button onclick="mood('sad')">🥺 I'm sad</button><button onclick="mood('annoyed')">😤 I'm annoyed</button><button onclick="mood('miss')">😔 I miss you</button><button onclick="mood('stress')">🫠 I'm stressed</button><button onclick="mood('love')">❤️ I need love</button><button onclick="mood('tired')">😴 I'm tired</button><button onclick="mood('motivation')">🤍 I need motivation</button><button onclick="mood('laugh')">😂 Make me laugh</button><button onclick="mood('thinking')">🥰 I'm thinking of you</button><button onclick="mood('angry')">😡 I'm angry</button><button onclick="mood('hug')">🫂 I need a hug</button>
+<!-- WELCOME PAGE -->
+
+<section id="welcome" class="screen">
+
+<div class="card">
+
+<div class="heart">💌</div>
+
+<p class="sub">a tiny corner of the internet</p>
+
+<h1>For V ❤️</h1>
+
+<p>
+Made by the girl who loves annoying you,
+worrying about you, and loving you a little
+more than she admits.
+</p>
+
+<button class="enter" onclick="showHome()">
+Come in →
+</button>
+
+<p class="sub">
+P.S. Yes, this entire website is about you.
+</p>
+
 </div>
-<h2 style="margin-top:30px">A few things about you...</h2><div class="tiles">
-<button onclick="openSection('story')">📖 Our little story</button><button onclick="openSection('dog')">🐶 Dog therapy</button><button onclick="openSection('car')">🚗 For the car nerd</button><button onclick="openSection('books')">📚 Your bookshelf</button><button onclick="openSection('letters')">💌 Open when...</button><button onclick="openSection('secret')">🤫 Something secret</button><button onclick="openSection('dont')">♡ Don't click this</button>
-</div><div class="footer">Made with an unreasonable amount of love ❤️</div></div></section>
 
-<div id="modal" class="modal hidden"><div class="modalbox"><div id="modalContent"></div><button class="close" onclick="closeModal()">Close ❤️</button></div></div>
+</section>
+
+
+<!-- HOME PAGE -->
+
+<section id="home" class="screen hidden">
+
+<div class="card">
+
+<div class="heart">❤️</div>
+
+<h2>How are you feeling today?</h2>
+
+<p class="sub">
+Choose one. Your girlfriend has something to say.
+</p>
+
+<div class="moods">
+
+<button onclick="mood('happy')">😊 I'm happy</button>
+
+<button onclick="mood('sad')">🥺 I'm sad</button>
+
+<button onclick="mood('annoyed')">😤 I'm annoyed</button>
+
+<button onclick="mood('miss')">😔 I miss you</button>
+
+<button onclick="mood('stress')">🫠 I'm stressed</button>
+
+<button onclick="mood('love')">❤️ I need love</button>
+
+<button onclick="mood('tired')">😴 I'm tired</button>
+
+<button onclick="mood('motivation')">🤍 I need motivation</button>
+
+<button onclick="mood('laugh')">😂 Make me laugh</button>
+
+<button onclick="mood('thinking')">🥰 I'm thinking of you</button>
+
+<button onclick="mood('angry')">😡 I'm angry</button>
+
+<button onclick="mood('hug')">🫂 I need a hug</button>
+
+</div>
+
+
+<h2 style="margin-top:30px">
+A few things about you...
+</h2>
+
+<div class="tiles">
+
+<button onclick="openSection('story')">
+📖 Our little story
+</button>
+
+<button onclick="openSection('dog')">
+🐶 Dog therapy
+</button>
+
+<button onclick="openSection('car')">
+🚗 For the car nerd
+</button>
+
+<button onclick="openSection('books')">
+📚 Your bookshelf
+</button>
+
+<button onclick="openSection('letters')">
+💌 Open when...
+</button>
+
+<button onclick="openSection('secret')">
+🤫 Something secret
+</button>
+
+<button onclick="openSection('dont')">
+♡ Don't click this
+</button>
+
+</div>
+
+<div class="footer">
+Made with an unreasonable amount of love ❤️
+</div>
+
+</div>
+
+</section>
+
+
+<!-- POPUP -->
+
+<div id="modal" class="modal hidden">
+
+<div class="modalbox">
+
+<div id="modalContent"></div>
+
+<button class="close" onclick="closeModal()">
+Close ❤️
+</button>
+
+</div>
+
+</div>
+
 
 <script>
+
+function showHome(){
+
+document.getElementById("welcome").classList.add("hidden");
+
+document.getElementById("home").classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
 const messages={
-happy:["Look at you being happy. 🥹❤️ I hope you know how much I love seeing you like this. Now tell me what happened—I want the entire story.","Your happiness looks really good on you, V. Please keep that smile for a little longer. ❤️"],
-sad:["Come here, V. 🫂 You don't have to fix everything right now. Have a bad day if you need to. I'm still here.","You don't have to be strong every second. For today, just breathe. And remember that somewhere, someone is very, very much on your side. ❤️"],
-annoyed:["Okay, Mr. Grumpy. 😤 Take a breath before you declare war on the entire world. And yes, I am still giving you a hug.","I know you're annoyed. I also know you're cute when you're annoyed, which is honestly very inconvenient for me. 😂❤️"],
-miss:["I miss you too, V. More than this tiny screen can explain. If teleportation existed, I'd already be there annoying you. Until then—virtual hug. 🫂❤️","Missing me? Good. At least we're both suffering equally. Come back to me soon. ❤️"],
-stress:["Pause. Shoulders down. Breathe. You don't have to solve your whole life tonight. One thing at a time, okay? I've got you. ❤️","Whatever is stressing you out right now is not bigger than you. Take it slowly. I believe in you."],
-love:["LOVE EMERGENCY 🚨❤️ Treatment: one very long hug, one forehead kiss, and absolutely no escaping until I say so.","Your emotional-support girlfriend is currently reporting for duty. Come here. 🫂"],
-tired:["Enough for today. Go rest, V. Drink some water, put the phone away and let yourself be tired. Tomorrow can wait. ❤️","You've done enough. Now go be a sleepy little human and rest. 😴❤️"],
-motivation:["You don't need to have everything figured out. Just do the next thing. Then the next. I know what you're capable of, even when you forget. ❤️","Come on, V. One more step. Not to prove anything to anyone—just because I know how much you care about what you're building. I'm cheering for you."],
-laugh:["Official girlfriend announcement: you have been prescribed one stupid joke, three terrible impressions and unlimited teasing. Side effects may include smiling. 😂","I was going to say something intelligent, but then I remembered you chose me. So here we are. 😂❤️"],
-thinking:["You're thinking about me? Interesting. Because I may or may not have been thinking about you too. Okay fine. I definitely was. 🥰","Somewhere, you're thinking about me and I'm thinking about you. I really like that. ❤️"],
-angry:["You're allowed to be angry. Just don't let the anger decide everything for you. Take your time. When you're ready, talk to me. I'm not going anywhere. ❤️","I'm not asking you to stop feeling angry. I'm just reminding you that you don't have to carry it alone."],
-hug:["HUG REQUEST ACCEPTED. 🫂 Please remain still while your girlfriend delivers one unnecessarily long hug. No escape.","Close your eyes for a second. Imagine I'm right there, arms around you. That's your hug until I can give you the real one. ❤️"]};
-function showHome(){document.getElementById('welcome').classList.add('hidden');document.getElementById('home').classList.remove('hidden');window.scrollTo(0,0)}
-function showModal(x){document.getElementById('modalContent').innerHTML=x;document.getElementById('modal').classList.remove('hidden')}
-function closeModal(){document.getElementById('modal').classList.add('hidden')}
-function mood(k){let a=messages[k],m=a[Math.floor(Math.random()*a.length)];showModal('<h2>❤️ '+k.toUpperCase()+'</h2><p>'+m+'</p><div class="sparkles">✨ ❤️ ✨</div>')}
-function openSection(n){
-let c={
-story:'<h2>Our little story 📖</h2><p>Two people. A thousand little moments. Some ridiculous, some difficult, some impossibly beautiful. And somehow, through all of them, there is still an us.</p><p>More chapters coming soon. ❤️</p>',
-dog:'<h2>Doctor Girlfriend prescribes... 🐶</h2><div class="paws">🐾 🐾 🐾</div><p>One dog. Unlimited cuddles. Ten minutes of forgetting the rest of the world.</p><p>Prescription valid whenever V is having a bad day.</p>',
-car:'<h2>Vroom vroom 🚗</h2><div class="car">🚗💨</div><p>I may not understand every tiny detail about cars... but I do understand that your face lights up when you talk about them.</p><p>And honestly, I love that.</p>',
-books:'<h2>Your bookshelf 📚</h2><p>For the man who can turn a normal evening into a discussion about politics, history and the entire state of the world. 😂</p><p>Keep reading. Keep questioning. And occasionally let your girlfriend interrupt your analysis.</p>',
-secret:'<h2>Something secret 🤫</h2><p>V, behind all my teasing, nonsense and dramatic behaviour, there is a girl who genuinely feels very lucky to have you.</p><p>I don’t need every day to be perfect. I just want more ordinary days with you.</p><p>That’s all. ❤️</p>',
-dont:'<h2>YOU WERE WARNED. 😂</h2><p>Congratulations. You clicked the button you were specifically told not to click.</p><p>Your punishment is... another hug. 🫂❤️</p>'};
-if(n==='letters'){showLetters();return}showModal(c[n]||'<h2>❤️</h2><p>I love you.</p>')}
-function showLetters(){showModal('<h2>Open when... 💌</h2><p>Pick one.</p><div class="letters"><button onclick="letter(1)">Open when you miss me</button><button onclick="letter(2)">Open when you had a bad day</button><button onclick="letter(3)">Open when you’re angry with me</button><button onclick="letter(4)">Open when you can’t sleep</button><button onclick="letter(5)">Open when you need to know how much I love you</button></div>')}
-function letter(n){let a=[
-"If you’re reading this, I wish I could be there beside you. Until I can, consider this a tiny piece of me sitting next to you. ❤️",
-"Whatever happened today, you made it through. Come tell me everything when you’re ready. I’m on your side. 🫂",
-"Take a little time. Breathe. Then come talk to me. I’d rather understand you than win an argument. ❤️",
-"Put the phone down after this, close your eyes and imagine my arms around you. Goodnight, V. 😴❤️",
-"In case you ever forget: I love your ridiculousness, your thoughts, your little habits, your dreams, and the person you are when nobody is watching. ❤️"];showModal('<h2>💌 A little letter</h2><p>'+a[n-1]+'</p>')}
+
+happy:[
+"Look at you being happy. 🥹❤️ I hope you know how much I love seeing you like this. Now tell me what happened—I want the entire story.",
+"Your happiness looks really good on you, V. Please keep that smile for a little longer. ❤️"
+],
+
+sad:[
+"Come here, V. 🫂 You don't have to fix everything right now. Have a bad day if you need to. I'm still here.",
+"You don't have to be strong every second. For today, just breathe. And remember that somewhere, someone is very, very much on your side. ❤️"
+],
+
+annoyed:[
+"Okay, Mr. Grumpy. 😤 Take a breath before you declare war on the entire world. And yes, I am still giving you a hug.",
+"I know you're annoyed. I also know you're cute when you're annoyed, which is honestly very inconvenient for me. 😂❤️"
+],
+
+miss:[
+"I miss you too, V. More than this tiny screen can explain. If teleportation existed, I'd already be there annoying you. Until then—virtual hug. 🫂❤️",
+"Missing me? Good. At least we're both suffering equally. Come back to me soon. ❤️"
+],
+
+stress:[
+"Pause. Shoulders down. Breathe. You don't have to solve your whole life tonight. One thing at a time, okay? I've got you. ❤️",
+"Whatever is stressing you out right now is not bigger than you. Take it slowly. I believe in you."
+],
+
+love:[
+"LOVE EMERGENCY 🚨❤️ Treatment: one very long hug, one forehead kiss, and absolutely no escaping until I say so.",
+"Your emotional-support girlfriend is currently reporting for duty. Come here. 🫂"
+],
+
+tired:[
+"Enough for today. Go rest, V. Drink some water, put the phone away and let yourself be tired. Tomorrow can wait. ❤️",
+"You've done enough. Now go be a sleepy little human and rest. 😴❤️"
+],
+
+motivation:[
+"You don't need to have everything figured out. Just do the next thing. Then the next. I know what you're capable of, even when you forget. ❤️",
+"Come on, V. One more step. I'm cheering for you."
+],
+
+laugh:[
+"Official girlfriend announcement: you have been prescribed one stupid joke, three terrible impressions and unlimited teasing. Side effects may include smiling. 😂",
+"I was going to say something intelligent, but then I remembered you chose me. So here we are. 😂❤️"
+],
+
+thinking:[
+"You're thinking about me? Interesting. Because I may or may not have been thinking about you too. Okay fine. I definitely was. 🥰",
+"Somewhere, you're thinking about me and I'm thinking about you. I really like that. ❤️"
+],
+
+angry:[
+"You're allowed to be angry. Just don't let the anger decide everything for you. Take your time. When you're ready, talk to me. I'm not going anywhere. ❤️",
+"I'm not asking you to stop feeling angry. I'm just reminding you that you don't have to carry it alone."
+],
+
+hug:[
+"HUG REQUEST ACCEPTED. 🫂 Please remain still while your girlfriend delivers one unnecessarily long hug. No escape.",
+"Close your eyes for a second. Imagine I'm right there, arms around you. That's your hug until I can give you the real one. ❤️"
+]
+
+};
+
+
+function mood(type){
+
+let list=messages[type];
+
+let message=list[Math.floor(Math.random()*list.length)];
+
+showModal(
+"<h2>❤️</h2><p>"+message+"</p>"
+);
+
+}
+
+
+function openSection(type){
+
+let content="";
+
+if(type==="story"){
+
+content=`
+<h2>Our little story 📖</h2>
+
+<p>
+Two people. A thousand little moments.
+Some ridiculous, some difficult,
+some impossibly beautiful.
+</p>
+
+<p>
+And somehow, through all of them,
+there is still an us.
+</p>
+
+<p>More chapters coming soon. ❤️</p>
+`;
+
+}
+
+
+else if(type==="dog"){
+
+content=`
+<h2>Doctor Girlfriend prescribes... 🐶</h2>
+
+<div class="paws">🐾 🐾 🐾</div>
+
+<p>
+One dog. Unlimited cuddles.
+Ten minutes of forgetting the rest
+of the world.
+</p>
+
+<p>
+Prescription valid whenever V is having a bad day.
+</p>
+`;
+
+}
+
+
+else if(type==="car"){
+
+content=`
+<h2>Vroom vroom 🚗</h2>
+
+<div class="car">🚗💨</div>
+
+<p>
+I may not understand every tiny detail
+about cars...
+</p>
+
+<p>
+But I do understand that your face lights up
+when you talk about them.
+</p>
+
+<p>
+And honestly, I love that.
+</p>
+`;
+
+}
+
+
+else if(type==="books"){
+
+content=`
+<h2>Your bookshelf 📚</h2>
+
+<p>
+For the man who can turn a normal evening
+into a discussion about politics, history
+and the entire state of the world. 😂
+</p>
+
+<p>
+Keep reading. Keep questioning.
+And occasionally let your girlfriend
+interrupt your analysis.
+</p>
+`;
+
+}
+
+
+else if(type==="secret"){
+
+content=`
+<h2>Something secret 🤫</h2>
+
+<p>
+V, behind all my teasing, nonsense
+and dramatic behaviour, there is a girl
+who genuinely feels very lucky to have you.
+</p>
+
+<p>
+I don't need every day to be perfect.
+I just want more ordinary days with you.
+</p>
+
+<p>That's all. ❤️</p>
+`;
+
+}
+
+
+else if(type==="dont"){
+
+content=`
+<h2>YOU WERE WARNED. 😂</h2>
+
+<p>
+Congratulations.
+You clicked the button you were specifically
+told not to click.
+</p>
+
+<p>
+Your punishment is...
+another hug. 🫂❤️
+</p>
+`;
+
+}
+
+
+else if(type==="letters"){
+
+content=`
+
+<h2>Open when... 💌</h2>
+
+<p>Pick one.</p>
+
+<div class="letters">
+
+<button onclick="letter('miss')">
+When you miss me
+</button>
+
+<button onclick="letter('bad')">
+When you had a bad day
+</button>
+
+<button onclick="letter('angry')">
+When you're angry with me
+</button>
+
+<button onclick="letter('sleep')">
+When you can't sleep
+</button>
+
+<button onclick="letter('love')">
+When you need to know how much I love you
+</button>
+
+</div>
+
+`;
+
+}
+
+showModal(content);
+
+}
+
+
+function letter(type){
+
+let message="";
+
+if(type==="miss"){
+
+message=
+"If you're reading this, I wish I could be there beside you. Until I can, consider this a tiny piece of me sitting next to you. ❤️";
+
+}
+
+else if(type==="bad"){
+
+message=
+"Whatever happened today, you made it through. Come tell me everything when you're ready. I'm on your side. 🫂";
+
+}
+
+else if(type==="angry"){
+
+message=
+"Take a little time. Breathe. Then come talk to me. I'd rather understand you than win an argument. ❤️";
+
+}
+
+else if(type==="sleep"){
+
+message=
+"Put the phone down after this, close your eyes and imagine my arms around you. Goodnight, V. 😴❤️";
+
+}
+
+else{
+
+message=
+"In case you ever forget: I love your ridiculousness, your thoughts, your little habits, your dreams, and the person you are when nobody is watching. ❤️";
+
+}
+
+showModal(
+"<h2>💌 A little letter</h2><p>"+message+"</p>"
+);
+
+}
+
+
+function showModal(content){
+
+document.getElementById("modalContent").innerHTML=content;
+
+document.getElementById("modal").classList.remove("hidden");
+
+}
+
+
+function closeModal(){
+
+document.getElementById("modal").classList.add("hidden");
+
+}
+
 </script>
-</body></html>
+
+</body>
+</html>
